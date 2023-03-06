@@ -8,23 +8,20 @@ function App() {
   const options = {
     method: 'GET',
     url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI',
-    params: {q: 'taylor swift', pageNumber: '1', pageSize: '2', autoCorrect: 'true'},
+    params: {q: 'ice cream', pageNumber: '1', pageSize: '2', autoCorrect: 'true'},
     headers: {
-      'X-RapidAPI-Key': '977a5b648bmsh2c2dc55f0a331e2p127ba6jsnaa485c7ab02a',
+      'X-RapidAPI-Key': '1f337ed6e9mshbfacca2cfdfb894p120943jsn7edec953a7e2',
       'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
     }
   };
 
-    const [data, setData] = useState([]);
-    
-    const getImages = async () => {
-      const { data } = await axios.request(options);
-      setImages(data);
-      console.log(data.value)
+    const fetchData = async () => {
+      const response = await axios.request(options);
+      setImages(response.data.value);
     };
 
     useEffect(() => {
-      getImages();
+      fetchData();
     }, []);
 
     console.log(images)
@@ -32,8 +29,12 @@ function App() {
 
   return (
     <div className="App">
-
       <h1>Hello World</h1>
+      {images.map((image, index) => {
+        return (
+          <img src={image.url} alt="images" width="400" height="400"/>
+        )
+      })}
     </div>
   );
 }
