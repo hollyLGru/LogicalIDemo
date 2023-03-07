@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <h1>My Images</h1>
       {images.map((image, index) => {
         return (
           <img src={image.url} alt="images" width="400" height="400"/>
